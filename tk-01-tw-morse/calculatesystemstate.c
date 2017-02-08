@@ -17,7 +17,7 @@ void CalculateSystemState(EnvironmentData *env) {
 	int temp_high = 0;
 	int acc_high = 0;
 	int squaree = x*x+z*z+y*y;
-	if (x >= 20 || x <= -20 || y >= 20 || y <= -20 || z >= 20 || z <= -20 || squaree >= 900)
+	if (x > 20 || x < -20 || y > 20 || y < -20 || z > 20 || z < -20 || squaree > 900)
 		{
 			acc_high = 1;
 		}
