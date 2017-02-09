@@ -14,32 +14,41 @@
 int MorseToBinary(char input[], char output[]) {
 	int number_of_valid_bits=0;
 
-	for(int i; input[i] != '\0'; i++){
+	for(int i=0; input[i] != '\0'; i++){
+		int index_of_byte = number_of_valid_bits/8;
+		int index_of_bit_in_byte = number_of_valid_bits%8;
 		switch(input[i]){
 			case '.':
-				*output = *output<<1;
-				*output = *output | 1;
+				*(output + index_of_byte) = *(output + index_of_byte) | (1<<(7 - index_of_bit_in_byte));
+				//*(output + index_of_byte) = *(output + index_of_bit_in_byte) | (1<<index_of_bit_in_byte);
 				number_of_valid_bits += 1;
 				break;
 
 			case '-':
-				*output = *output<<3;
-				*output = *output | 7;
+				if(index_of_bit_in_byte < 6){
+					*(output + index_of_byte) =  *(output + index_of_byte) |  7<<(7 - index_of_bit_in_byte - 2);
+				}
+				//*(output + index_of_byte) = *(output + index_of_bit_in_byte) | (7<<index_of_bit_in_byte);
+				else if(index_of_bit_in_byte == 6){
+					*(output + index_of_byte) =  *(output + index_of_byte) |  3<<(7 - index_of_bit_in_byte - 1);
+					*(output + index_of_byte + 1) =  *(output + index_of_byte + 1) |  1<<7;
+				}
+				else{
+					*(output + index_of_byte) =  *(output + index_of_byte) |  1<<(7 - index_of_bit_in_byte);
+					*(output + index_of_byte + 1) =  *(output + index_of_byte + 1) |  3<<6;
+				}
 				number_of_valid_bits += 3;
 				break;
 
 			case ' ':
-				*output = *output<<1;
 				number_of_valid_bits += 1;
 				break;
 
 			case '/':
-				*output = *output<<3;
 				number_of_valid_bits += 3;
 				break;
 
 			case '\t':
-				*output<<7;
 				number_of_valid_bits += 7;
 				break;
 
@@ -48,6 +57,5 @@ int MorseToBinary(char input[], char output[]) {
 				return -1;
 		}
 	}
-	*output<<(256-number_of_valid_bits);
 	return number_of_valid_bits;
 }
