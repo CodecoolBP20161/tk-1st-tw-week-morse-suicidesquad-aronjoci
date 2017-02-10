@@ -18,19 +18,19 @@ int CharToMorse(char input[], char *output) {
 	int last_valid_index;
 
 	for(int i = 0; input[i] != '\0'; i++){
-		int wat = (int) input[i];
+		int index = (int) input[i];
 
-		if (wat >= '0' && wat <= '9'){ /* We check if next input char is a number*/
-			if((250 - strlen(output)) >= strlen(CHAR_TO_MORSE_NUMBER[wat -'0'])){ /* we check if there is enough space */
-				strcat(output, CHAR_TO_MORSE_NUMBER[wat -'0']);
+		if (index >= '0' && index <= '9'){ /* We check if next input char is a number*/
+			if((250 - strlen(output)) >= strlen(CHAR_TO_MORSE_NUMBER[index -'0'])){ /* we check if there is enough space */
+				strcat(output, CHAR_TO_MORSE_NUMBER[index -'0']);
 			}
 			else{
 				return i;
 			}
 		}
-		else if(wat >= 'A' && wat <= 'Z'){/* We check if next input char is a letter*/
-			if((250 - strlen(output)) >= strlen(CHAR_TO_MORSE_ALPHA[wat -'A'])){ /* we check if there is enough space */
-				strcat(output, CHAR_TO_MORSE_ALPHA[wat -'A']);
+		else if(index >= 'A' && index <= 'Z'){/* We check if next input char is a letter*/
+			if((250 - strlen(output)) >= strlen(CHAR_TO_MORSE_ALPHA[index -'A'])){ /* we check if there is enough space */
+				strcat(output, CHAR_TO_MORSE_ALPHA[index -'A']);
 			}
 			else{
 				return i;
