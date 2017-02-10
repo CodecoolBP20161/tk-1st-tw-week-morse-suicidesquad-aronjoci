@@ -16,6 +16,7 @@ int MorseToBinary(char input[], char output[]) {
 
 	for(int i=0; input[i] != '\0'; i++){
 		int index_of_byte = number_of_valid_bits/8;
+		//shift_correction creates the necessary mask to put the right data into the given bit
 		int shift_correction = 7 - number_of_valid_bits%8;
 		switch(input[i]){
 			case '.':
