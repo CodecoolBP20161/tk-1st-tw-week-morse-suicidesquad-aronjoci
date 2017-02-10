@@ -20,7 +20,6 @@ int MorseToBinary(char input[], char output[]) {
 		switch(input[i]){
 			case '.':
 				*(output + index_of_byte) = *(output + index_of_byte) | (1<<(7 - index_of_bit_in_byte));
-				//*(output + index_of_byte) = *(output + index_of_bit_in_byte) | (1<<index_of_bit_in_byte);
 				number_of_valid_bits += 1;
 				break;
 
@@ -28,7 +27,6 @@ int MorseToBinary(char input[], char output[]) {
 				if(index_of_bit_in_byte < 6){
 					*(output + index_of_byte) =  *(output + index_of_byte) |  7<<(7 - index_of_bit_in_byte - 2);
 				}
-				//*(output + index_of_byte) = *(output + index_of_bit_in_byte) | (7<<index_of_bit_in_byte);
 				else if(index_of_bit_in_byte == 6){
 					*(output + index_of_byte) =  *(output + index_of_byte) |  3<<(7 - index_of_bit_in_byte - 1);
 					*(output + index_of_byte + 1) =  *(output + index_of_byte + 1) |  1<<7;
