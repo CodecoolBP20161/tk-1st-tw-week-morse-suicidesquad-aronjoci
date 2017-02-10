@@ -19,7 +19,6 @@ int CharToMorse(char input[], char *output) {
 
 	for(int i = 0; input[i] != '\0'; i++){
 		int wat = (int) input[i];
-		printf("%d",i);
 
 		if (wat >= '0' && wat <= '9'){ /* We check if next input char is a number*/
 			if((250 - strlen(output)) >= strlen(CHAR_TO_MORSE_NUMBER[wat -'0'])){ /* we check if there is enough space */
